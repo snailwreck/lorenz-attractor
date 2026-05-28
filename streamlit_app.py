@@ -4,11 +4,6 @@ import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 
 st.title("Lorenz Attractor")
-st.markdown(r"""
-$$\frac{dx}{dt} = \sigma(y - x), \quad
-\frac{dy}{dt} = x(\rho - z) - y, \quad
-\frac{dz}{dt} = xy - \beta z$$
-""")
 
 # --- Sidebar controls ---
 st.sidebar.header("Parameters")
