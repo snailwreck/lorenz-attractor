@@ -76,10 +76,6 @@ ax.set_title(f"Lorenz Attractor  (σ={sigma}, ρ={rho}, β={beta:.3f})")
 plt.tight_layout()
 st.pyplot(fig)
 
-st.sidebar.header("Lorenz Parameters")
-sigma = st.sidebar.slider("σ (sigma)", 1.0, 20.0, 10.0, step=0.1)
-beta  = st.sidebar.slider("β (beta)",  0.1,  8.0,  8/3, step=0.01)
-
 st.sidebar.header("ρ sweep range")
 rho_min = st.sidebar.slider("ρ min",  0.0, 100.0,  50.0, step=0.5)
 rho_max = st.sidebar.slider("ρ max",  0.0, 300.0, 320.0, step=0.5)
