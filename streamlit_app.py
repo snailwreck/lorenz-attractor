@@ -4,8 +4,10 @@ import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 
 st.title("Lorenz Attractor")
+st.write("dx/dt = σ(y-x)")
+st.write("dy/dt = x(ρ-z)-y")
+st.write("dz/dt = xy-βz")
 
-# --- Sidebar controls ---
 st.sidebar.header("Parameters")
 sigma = st.sidebar.slider("σ (sigma)",  1.0,  20.0, 10.0, step=0.1)
 rho   = st.sidebar.slider("ρ (rho)",    0.0,  60.0, 28.0, step=0.1)
@@ -20,7 +22,6 @@ st.sidebar.header("Integration")
 t_end = st.sidebar.slider("Time span",   10.0, 200.0,  80.0, step=5.0)
 dt    = st.sidebar.slider("Step size dt", 0.001, 0.05, 0.005, step=0.001)
 
-# --- Solve ODE ---
 @st.cache_data
 def solve_lorenz(sigma, rho, beta, x0, y0, z0, t_end, dt):
     def lorenz(t, state):
@@ -39,14 +40,10 @@ def solve_lorenz(sigma, rho, beta, x0, y0, z0, t_end, dt):
 
 t, x, y, z = solve_lorenz(sigma, rho, beta, x0, y0, z0, t_end, dt)
 
-# --- Colour by time so trajectory direction is visible ---
 norm_t = (t - t.min()) / (t.max() - t.min())
 
-# --- Plot ---
-view = st.radio("View", ["X–Z", "X–Y", "Y–Z", "3D"], horizontal=True)
-
+view = st.radio("", ["X–Z", "X–Y", "Y–Z", "3D"], horizontal=True)
 fig = plt.figure(figsize=(10, 6))
-
 if view == "3D":
     ax = fig.add_subplot(111, projection="3d")
     # plot in segments so we can colour by time
@@ -68,16 +65,15 @@ else:
     else:
         coords = (y, z, "Y", "Z")
     a, b, xl, yl = coords
-    # scatter with time-based colour
     ax.scatter(a, b, c=norm_t, cmap="plasma", s=0.1, alpha=0.6)
     ax.set_xlabel(xl); ax.set_ylabel(yl)
 
-ax.set_title(f"Lorenz Attractor  (σ={sigma}, ρ={rho}, β={beta:.3f})")
-plt.tight_layout()
-st.pyplot(fig)
+if st.button("Generate Lorenz Attractor Graph"):
+    ax.set_title(f"Lorenz Attractor  (σ={sigma}, ρ={rho}, β={beta:.3f})")
+    plt.tight_layout()
+    st.pyplot(fig)
 
-# --- Time series ---
-with st.expander("Show time series"):
+if st.button("Show time series"):
     fig2, axes = plt.subplots(3, 1, figsize=(10, 5), sharex=True)
     for ax2, var, label, color in zip(axes, [x, y, z], ["x", "y", "z"],
                                       ["steelblue", "tomato", "seagreen"]):
