@@ -9,9 +9,9 @@ st.write("dy/dt = x(ρ-z)-y")
 st.write("dz/dt = xy-βz")
 
 st.sidebar.header("Parameters")
-sigma = st.sidebar.slider("σ (sigma)",  1.0,  20.0, 10.0, step=0.1)
-rho   = st.sidebar.slider("ρ (rho)",    0.0,  60.0, 28.0, step=0.1)
-beta  = st.sidebar.slider("β (beta)",   0.1,   8.0,  8/3, step=0.01)
+sigma = st.sidebar.slider("σ (sigma)",  0.0,  50.0, 25.0, step=0.1)
+rho   = st.sidebar.slider("ρ (rho)",    0.0,  50.0, 25.0, step=0.1)
+beta  = st.sidebar.slider("β (beta)",   0.0,  50.0, 25.0, step=0.1)
 
 st.sidebar.header("Initial Conditions")
 x0 = st.sidebar.number_input("x₀",  value=1.0)
@@ -68,7 +68,7 @@ else:
     ax.scatter(a, b, c=norm_t, cmap="plasma", s=0.1, alpha=0.6)
     ax.set_xlabel(xl); ax.set_ylabel(yl)
 
-if st.button("Generate Lorenz Attractor Graph"):
+if st.button("Generate Lorenz attractor graph"):
     ax.set_title(f"Lorenz Attractor  (σ={sigma}, ρ={rho}, β={beta:.3f})")
     plt.tight_layout()
     st.pyplot(fig)
