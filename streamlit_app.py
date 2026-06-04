@@ -9,9 +9,9 @@ st.write("dy/dt = x(ρ-z)-y")
 st.write("dz/dt = xy-βz")
 
 st.sidebar.header("Parameters")
-sigma = st.sidebar.slider("σ (sigma)",  0.0,  50.0, 25.0, step=0.1)
+sigma = st.sidebar.slider("σ (sigma)",  0.0,  20.0, 10.0, step=0.1)
 rho   = st.sidebar.slider("ρ (rho)",    0.0,  50.0, 25.0, step=0.1)
-beta  = st.sidebar.slider("β (beta)",   0.0,  50.0, 25.0, step=0.1)
+beta  = st.sidebar.slider("β (beta)",   0.0,   8.0,  4.0, step=0.01)
 
 st.sidebar.header("Initial Conditions")
 x0 = st.sidebar.number_input("x₀",  value=1.0)
