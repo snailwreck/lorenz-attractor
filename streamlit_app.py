@@ -42,7 +42,7 @@ t, x, y, z = solve_lorenz(sigma, rho, beta, x0, y0, z0, t_end, dt)
 
 norm_t = (t - t.min()) / (t.max() - t.min())
 
-view = st.radio("", ["X–Z", "X–Y", "Y–Z", "3D"], horizontal=True)
+view = st.radio(["X–Z", "X–Y", "Y–Z", "3D"], horizontal=True)
 fig = plt.figure(figsize=(10, 6))
 if view == "3D":
     ax = fig.add_subplot(111, projection="3d")
